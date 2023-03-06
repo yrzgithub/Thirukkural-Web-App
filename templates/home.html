@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Daily Thirukural</title>
+        <link rel="icon" type="image/x-icon" href="static/favicon.png"/>
+        <style>
+            body{
+                margin-top: 50px;
+                margin-bottom: 50px;
+                background-color: lightpink;
+                font-size:x-large;
+            }
+
+            .center {
+                margin-top: 50px;
+                text-align: center;
+            }
+
+            table{
+                border-spacing: 30px 30px;
+                text-align: left;
+                margin: auto;
+                width: 60%;
+            }
+
+            marquee{
+                width: 60%;
+            }
+
+            button{
+                width: 150px;
+                height: 75px;
+                font-size: xx-large;
+                margin-top: 20px;
+                color: white;
+                background-color: blue;
+                border: 2px solid blue;
+                cursor: pointer;
+            }
+
+            img{
+                width: 70%;
+                height: auto;
+                display: block;
+                margin: auto;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <h1 class="center"><marquee>தினசரி திருக்குறள்</marquee></h1>
+
+        <img src="static//thiruvalluvar.jpg">
+    
+        <h2 class="center">இன்றைய திருக்குறள்</h2>
+
+        <div style="margin-top: 40px;">
+            <table>
+                <tr>
+                    <th>பால்</th>
+                    <td>{{paal_data}}</td>
+                </tr>
+    
+                <tr>
+                    <th>அதிகாரம்</th>
+                    <td>{{adigaram_data}}</td>
+                </tr>
+    
+                <tr>
+                    <th>குறள்</th>
+                    <td><pre><b style="font-size:larger;">{{kural_ta}}</b></pre></td>
+                </tr>
+    
+                <tr>
+                    <th>மு.வ உரை</th>
+                    <td>{{varatharasan}}</td>
+                </tr>
+    
+                <tr>
+                    <th><pre>சாலமன் பாப்பையா உரை</pre></th>
+                    <td>{{paapaya}}</td>
+                </tr>
+
+                <tr>
+                    <th>Kural in English </th>
+                    <td>{{kural_en}}</td>
+                </tr>
+    
+                <tr>
+                    <th>English meaning</th>
+                    <td>{{en_meaning}}</td>
+                </tr>
+
+                <tr>
+                    <th colspan="2" style="text-align: center;">
+                        <a href="{{next}}">
+                            <button type="submit">Next</button>
+                        </a>
+                    </th>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
