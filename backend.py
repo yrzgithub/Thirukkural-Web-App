@@ -31,6 +31,7 @@ tot_inbam = 25
 
 india_time_diff = timedelta(hours=5,minutes=30)
 now = datetime.utcnow() + india_time_diff
+day_only = datetime(year=now.year,month=now.month,day=now.day)
 
 app = Flask(__name__)
 
@@ -40,24 +41,23 @@ if isfile(data_path):
         data = load(file)
         file.close()
 
-    todays_kural_aram =  (now - data[key_lastly_opened_aram]).days + 1
-    todays_kural_porul = (now - data[key_lastly_opened_porul]).days + 1
-    todays_kural_inbam = (now - data[key_lastly_opened_inbam]).days + 1
+    todays_kural_aram =  (day_only - data[key_lastly_opened_aram]).days + 1
+    todays_kural_porul = (day_only - data[key_lastly_opened_porul]).days + 1
+    todays_kural_inbam = (day_only - data[key_lastly_opened_inbam]).days + 1
 
     if todays_kural_aram>tot_aram:
-        data[key_lastly_opened_aram] = now 
+        data[key_lastly_opened_aram] = day_only
         todays_kural_aram = 1
     
     if todays_kural_porul>tot_porul:
-        data[key_lastly_opened_porul] = now
+        data[key_lastly_opened_porul] = day_only
         todays_kural_porul = 1
 
     if todays_kural_inbam>tot_inbam:
-        data[key_lastly_opened_inbam] = now 
+        data[key_lastly_opened_inbam] = day_only
         todays_kural_inbam = 1
 
 else:
-    day_only = datetime(year=now.year,month=now.month,day=now.day)
     data = {key_lastly_opened_aram:day_only,key_lastly_opened_porul:day_only,key_lastly_opened_inbam:day_only}
     with open(data_path,"wb") as file:
         dump(data,file)
