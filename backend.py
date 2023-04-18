@@ -23,7 +23,8 @@ key_paapaya = "paapaya"
 key_english_meaning = "english_meaning"
 key_varadarasan = "varadarasan"
 
-todays_kural = 1
+start = 40
+todays_kural = start
 tot_aram = 38
 tot_porul = 70
 tot_inbam = 25
@@ -48,7 +49,7 @@ if isfile(data_path):
     if todays_kural_aram>tot_aram:
         data[key_lastly_opened_aram] = day_only
         todays_kural_aram = 1
-    
+
     if todays_kural_porul>tot_porul:
         data[key_lastly_opened_porul] = day_only
         todays_kural_porul = 1
@@ -63,7 +64,7 @@ else:
         dump(data,file)
         file.close()
 
-    todays_kural_aram = todays_kural_porul = todays_kural_inbam = 1
+    todays_kural_aram = todays_kural_porul = todays_kural_inbam = start
 
 
 
