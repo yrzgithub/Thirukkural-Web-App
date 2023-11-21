@@ -27,12 +27,9 @@ start = 40
 todays_kural = start
 tot_aram = 38
 tot_porul = 70
-tot_inbam = 25
+tot_inbam = 25 
 
-
-india_time_diff = timedelta(hours=5,minutes=30)
-now = datetime.utcnow() + india_time_diff
-day_only = datetime(year=now.year,month=now.month,day=now.day)
+now = datetime.now()
 
 app = Flask(__name__)
 
@@ -42,9 +39,9 @@ if isfile(data_path):
         data = load(file)
         file.close()
 
-    todays_kural_aram =  (day_only - data[key_lastly_opened_aram]).days + 1
-    todays_kural_porul = (day_only - data[key_lastly_opened_porul]).days + 1
-    todays_kural_inbam = (day_only - data[key_lastly_opened_inbam]).days + 1
+    todays_kural_aram =  timedelta(now,data[key_lastly_opened_aram]).days + 1 
+    todays_kural_porul = timedelta(now,data[key_lastly_opened_porul]).days + 1
+    todays_kural_inbam = timedelta(now,data[key_lastly_opened_inbam]).days + 1
 
     if todays_kural_aram>tot_aram:
         data[key_lastly_opened_aram] = day_only
@@ -119,17 +116,20 @@ def home():
 
 @app.route("/aram")
 def aram():
+    print("Kural No : ",todays_kural_aram)
     return get_page("porul",todays_kural_aram)
 
 
 @app.route("/porul")
 def porul():
+    print("Kural No : ",todays_kural_porul)
     kural_no = tot_aram * 10 + todays_kural_porul
     return get_page("inbam",kural_no)
 
 
 @app.route("/inbam")
 def inbam():
+    print("Kural No : ",todays_kural_inbam)
     kural_no = tot_aram * 10 + tot_porul * 10 + todays_kural_inbam
     return get_page("/",kural_no)
 
