@@ -28,10 +28,11 @@
             }
 
             button{
-                width: 150px;
-                height: 75px;
+                width: 100px;
+                height: 50px;
+                border-radius: 15px;
                 font-size: xx-large;
-                margin-top: 20px;
+                margin-top: 35px;
                 color: white;
                 background-color: blue;
                 border: 2px solid blue;
@@ -49,57 +50,65 @@
     </head>
 
     <body>
-        <h1 class="center"><marquee>தினசரி திருக்குறள்</marquee></h1>
+        <h1 class="center"><marquee>திருக்குறள்</marquee></h1>
 
-        <!-- <img src="static//thiruvalluvar.jpg"> -->
-    
-        <h2 class="center">இன்றைய திருக்குறள்</h2>
+        <div aria-orientation="vertical">
 
-        <div style="margin-top: 40px;">
-            <table>
-                <tr>
-                    <th>பால்</th>
-                    <td>{{paal_data}}</td>
-                </tr>
-    
-                <tr>
-                    <th>அதிகாரம்</th>
-                    <td>{{adigaram_data}}</td>
-                </tr>
-    
-                <tr>
-                    <th>குறள்</th>
-                    <td><pre><b style="font-size:larger;">{{kural_ta}}</b></pre></td>
-                </tr>
-    
-                <tr>
-                    <th>மு.வ உரை</th>
-                    <td>{{varatharasan}}</td>
-                </tr>
-    
-                <tr>
-                    <th><pre>சாலமன் பாப்பையா உரை</pre></th>
-                    <td>{{paapaya}}</td>
-                </tr>
+            <img src="static//thiruvalluvar.jpg" style="max-width: 50%;height:auto"> 
 
-                <tr>
-                    <th>Kural in English </th>
-                    <td>{{kural_en}}</td>
-                </tr>
+            <div style="margin-top: 40px;">
+                <table>
+                    <tr>
+                        <th>பால்</th>
+                        <td>{{paal_data}}</td>
+                    </tr>
+        
+                    <tr>
+                        <th>அதிகாரம்</th>
+                        <td>{{adigaram_data}}</td>
+                    </tr>
+        
+                    <tr>
+                        <th>குறள்</th>
+                        <td><pre><b style="font-size:larger;">{{kural_ta}}</b></pre></td>
+                    </tr>
+        
+                    <tr>
+                        <th>மு.வ உரை</th>
+                        <td>{{varatharasan}}</td>
+                    </tr>
+        
+                    <tr>
+                        <th><pre>சாலமன் பாப்பையா உரை</pre></th>
+                        <td>{{paapaya}}</td>
+                    </tr>
     
-                <tr>
-                    <th>English meaning</th>
-                    <td>{{en_meaning}}</td>
-                </tr>
-
-                <tr>
-                    <th colspan="2" style="text-align: center;">
-                        <a href="{{next}}">
-                            <button type="submit">Next</button>
-                        </a>
-                    </th>
-                </tr>
-            </table>
+                    <tr>
+                        <th>Kural in English </th>
+                        <td>{{kural_en}}</td>
+                    </tr>
+        
+                    <tr>
+                        <th>English meaning</th>
+                        <td>{{en_meaning}}</td>
+                    </tr>
+    
+                    <tr>
+                        <th colspan="2" style="text-align: center;">
+                            <a href="{{next}}">
+                                <button type="submit">Next</button>
+                            </a>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+            
         </div>
+
+        
+    
+        <!-- <h2 class="center">இன்றைய திருக்குறள்</h2>  --> 
+
+        
     </body>
 </html>
