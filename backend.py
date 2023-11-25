@@ -1,5 +1,6 @@
 from thirukkural import Kural
-from os.path import isfile
+from os.path import isfile,isdir
+from os import mkdir
 from pickle import load,dump
 from flask import *
 from datetime import datetime,timedelta
@@ -23,15 +24,16 @@ key_paapaya = "paapaya"
 key_english_meaning = "english_meaning"
 key_varadarasan = "varadarasan"
 
-start = 40
-todays_kural = start
 tot_aram = 38
 tot_porul = 70
 tot_inbam = 25 
 
+
 now = datetime.now()
 
+
 app = Flask(__name__)
+
 
 
 if isfile(data_path):
@@ -39,29 +41,34 @@ if isfile(data_path):
         data = load(file)
         file.close()
 
-    todays_kural_aram =  timedelta(now,data[key_lastly_opened_aram]).days + 1 
-    todays_kural_porul = timedelta(now,data[key_lastly_opened_porul]).days + 1
-    todays_kural_inbam = timedelta(now,data[key_lastly_opened_inbam]).days + 1
+    todays_kural_aram =  (now - data[key_lastly_opened_aram]).days + 1 
+    todays_kural_porul = (now - data[key_lastly_opened_porul]).days + 1
+    todays_kural_inbam = (now - data[key_lastly_opened_inbam]).days + 1
 
     if todays_kural_aram>tot_aram:
-        data[key_lastly_opened_aram] = day_only
+        data[key_lastly_opened_aram] = now
         todays_kural_aram = 1
 
     if todays_kural_porul>tot_porul:
-        data[key_lastly_opened_porul] = day_only
+        data[key_lastly_opened_porul] = now
         todays_kural_porul = 1
 
     if todays_kural_inbam>tot_inbam:
-        data[key_lastly_opened_inbam] = day_only
+        data[key_lastly_opened_inbam] = now
         todays_kural_inbam = 1
 
 else:
-    data = {key_lastly_opened_aram:day_only,key_lastly_opened_porul:day_only,key_lastly_opened_inbam:day_only}
+    data = {key_lastly_opened_aram : now,key_lastly_opened_porul : now,key_lastly_opened_inbam : now}
+
+    if not isdir("data"):
+        mkdir("data")
+        print("Data dir created")
+
     with open(data_path,"wb") as file:
         dump(data,file)
         file.close()
 
-    todays_kural_aram = todays_kural_porul = todays_kural_inbam = start
+    todays_kural_aram = todays_kural_porul = todays_kural_inbam = now
 
 
 
