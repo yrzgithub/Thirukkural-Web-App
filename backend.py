@@ -62,6 +62,7 @@ else:
 
     if not isdir("data"):
         mkdir("data")
+        print("Data dir created")
 
     with open(data_path,"wb") as file:
         dump(data,file)
