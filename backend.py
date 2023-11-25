@@ -1,5 +1,6 @@
 from thirukkural import Kural
-from os.path import isfile
+from os.path import isfile,isdir
+from os import mkdir
 from pickle import load,dump
 from flask import *
 from datetime import datetime,timedelta
@@ -58,11 +59,15 @@ if isfile(data_path):
 
 else:
     data = {key_lastly_opened_aram : now,key_lastly_opened_porul : now,key_lastly_opened_inbam : now}
+
+    if not isdir("data"):
+        mkdir("data")
+
     with open(data_path,"wb") as file:
         dump(data,file)
         file.close()
 
-    todays_kural_aram = todays_kural_porul = todays_kural_inbam = start
+    todays_kural_aram = todays_kural_porul = todays_kural_inbam = now
 
 
 
